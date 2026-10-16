@@ -29,3 +29,6 @@
 - 2026-10-16 12:41 | main | merged gitignores into root; removed app/.gitignore
 - 2026-10-16 12:41 | main | excluded .claude/, CLAUDE.md, journal.md from git
 - 2026-10-16 12:41 | main | README: dropped refs to unpublished files
+- 2026-10-16 13:01 | main | added .github/workflows/deploy.yml (Pages via Actions)
+- 2026-10-16 13:01 | main | vite base './' for sub-path hosting; verified locally
+- 2026-10-16 13:01 | main | README: added live demo link

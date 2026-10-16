@@ -2,6 +2,8 @@
 
 **How an AI construction company turns customer requirements into a safe, governed outcome.**
 
+**Live demo:** https://luiz-flamorim.github.io/three-little-pigs-b/
+
 An interactive, animated teaching demo that uses *The Three Little Pigs* to explain AI agents, orchestration, context, guardrails, validation, rework loops, human oversight and threats to a non-technical audience.
 
 - The **pigs** are customers. They define *what* they need.
