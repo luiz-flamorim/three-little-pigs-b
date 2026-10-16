@@ -32,3 +32,4 @@
 - 2026-10-16 13:01 | main | added .github/workflows/deploy.yml (Pages via Actions)
 - 2026-10-16 13:01 | main | vite base './' for sub-path hosting; verified locally
 - 2026-10-16 13:01 | main | README: added live demo link
+- 2026-10-16 13:03 | main | Pages deploy succeeded; live site verified
