@@ -29,6 +29,7 @@ This file is the single source of truth for every Claude session and every agent
 ├── CLAUDE.md                 # Main instructions (this file)
 ├── README.md                 # Public-facing project description (GitHub)
 ├── journal.md                # Append-only log of actions
+├── .github/workflows/        # deploy.yml: test, build and publish app/ to GitHub Pages
 ├── app/                      # React + Vite app (source of truth)
 │   └── src/data/             # all story content: edit here, not in components
 ├── artifact/                 # single-file build for the hosted preview (generated)
@@ -63,6 +64,15 @@ Non-negotiable accuracy rules (from the brief, enforced by tests in `app/src/tes
 
 - Commands (run inside `app/`): `npm run dev`, `npm test`, `npm run lint`, `npm run build:artifact`, `npm run docs:roles`.
 - Keep npm's cache inside the project: `npm install --cache ../tmp/npm-cache`.
-- After changing `src/data/roles.js`, run `npm run docs:roles`. After any app change, run `npm run build:artifact` and republish the hosted preview.
+- After changing `src/data/roles.js`, run `npm run docs:roles`. After any app change, run `npm run build:artifact` and republish the Claude preview (same file path / URL below).
 - Visual checks: a headless Chromium lives in `tmp/ms-playwright` (set `PLAYWRIGHT_BROWSERS_PATH`). Scripts are in `tmp/pw/`. Don't use Playwright's fake clock: it freezes Framer Motion. Wait in real time instead.
 - Use simple British English in all user-facing text.
+
+## 8. Publishing and current status
+
+- **GitHub repo:** https://github.com/luiz-flamorim/three-little-pigs-b (branch `main`). The user owns it; push only when they ask.
+- **Live site (GitHub Pages):** https://luiz-flamorim.github.io/three-little-pigs-b/. It deploys automatically on every push to `main` via `.github/workflows/deploy.yml` (Pages source: GitHub Actions). Tests must pass or nothing deploys.
+- `app/vite.config.js` uses `base: './'` so the build works under the repo sub-path. Do not change it to an absolute path.
+- **Claude Artifact preview:** https://claude.ai/artifact/2kbsa9LZ8Mpty4bwRDk2Ai, published from `artifact/the-three-little-agents.html` (body-only file; don't open it directly in a browser).
+- **Git ignore:** one root `.gitignore` only (user's choice). `.claude/`, `CLAUDE.md` and `journal.md` ARE published to GitHub, so keep them free of anything private.
+- The user is new to git and GitHub: explain steps plainly and offer to do them.

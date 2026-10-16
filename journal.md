@@ -33,3 +33,5 @@
 - 2026-10-16 13:01 | main | vite base './' for sub-path hosting; verified locally
 - 2026-10-16 13:01 | main | README: added live demo link
 - 2026-10-16 13:03 | main | Pages deploy succeeded; live site verified
+- 2026-10-16 13:08 | main | CLAUDE.md: added publishing/status section for next session
+- 2026-10-16 13:08 | user | closed session; pending: commit journal + CLAUDE.md updates
