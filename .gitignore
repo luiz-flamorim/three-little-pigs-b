@@ -1,0 +1,10 @@
+# Scratch space: npm cache, headless browser, screenshots
+tmp/
+
+# App dependencies and build output (recreated by npm install / npm run build)
+app/node_modules/
+app/dist/
+app/dist-artifact/
+
+# OS clutter
+.DS_Store

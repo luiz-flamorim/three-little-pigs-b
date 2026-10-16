@@ -1,0 +1,36 @@
+// Colour per role and per status. Components read these, so changing a colour here changes it everywhere.
+export const COLORS = {
+  customers: '#5b8cff',
+  company: '#c084fc',
+  orchestrator: '#f5a524',
+  research: '#22d3ee',
+  architecture: '#f472b6',
+  finance: '#fde047',
+  risk: '#a78bfa',
+  builder: '#4ade80',
+  writer: '#7dd3fc',
+  validation: '#2dd4bf',
+  human: '#fb923c',
+  guardrails: '#d9a92b',
+  wolf: '#f87171',
+  failure: '#ef4444',
+  controlled: '#22c55e',
+  outcome: '#10b981',
+  insider: '#fb7185',
+  neutral: '#6b7c9c',
+};
+
+export const STATUS = {
+  pass: { color: '#34d399', label: 'Validated' },
+  fail: { color: '#f87171', label: 'Failed validation' },
+  return: { color: '#fbbf24', label: 'Returned for correction' },
+  escalate: { color: '#fb923c', label: 'Escalated to human' },
+  approve: { color: '#10b981', label: 'Human approved' },
+  pending: { color: '#a3b3d1', label: 'Not yet validated' },
+  context: { color: '#f5a524', label: 'Approved context' },
+  secret: { color: '#fb7185', label: 'Outside the controlled process' },
+  threat: { color: '#f87171', label: 'Threat activity' },
+  ignored: { color: '#94a3b8', label: 'Ignored' },
+  outdated: { color: '#fbbf24', label: 'Out of date' },
+  unchecked: { color: '#f87171', label: 'Never checked' },
+};

@@ -1,0 +1,269 @@
+/* Layout: presentation board — header, control rail, 16:9 stage with an inspector column; stacks to one column on phones. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a1020;
+  --surface: #111a2e;
+  --raised: #18233d;
+  --line: #273552;
+  --fg: #e8eefb;
+  --muted: #a3b3d1;
+  --faint: #6b7c9c;
+  --focus: #fcd34d;
+  --pass: #34d399;
+  --fail: #f87171;
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-body: Figtree, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.page-gutter {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Miro-style dotted board */
+.board-dots {
+  background-color: var(--surface);
+  background-image: radial-gradient(rgba(163, 179, 209, 0.13) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- Flow canvas ---------- */
+.flow {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+}
+.flow-layer {
+  position: absolute;
+  inset: 0;
+}
+.flow[data-layout='wide'] .flow-layer {
+  font-size: clamp(8.5px, 1.16cqw, 16px);
+}
+.flow[data-layout='tall'] .flow-layer {
+  font-size: clamp(8.5px, 2.75cqw, 13px);
+}
+
+/* ---------- Role nodes ---------- */
+.node {
+  --c: #6b7c9c;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.55em 0.8em;
+  border-radius: 0.8em;
+  border: 1.5px solid color-mix(in srgb, var(--c) 60%, transparent);
+  background: color-mix(in srgb, var(--c) 11%, var(--surface));
+  color: var(--fg);
+  white-space: nowrap;
+  font-size: 1em;
+  line-height: 1.15;
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.35s, opacity 0.35s, border-color 0.35s, filter 0.35s;
+}
+.node:hover {
+  border-color: var(--c);
+}
+.node-icon {
+  display: grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  flex: none;
+  border-radius: 0.5em;
+  background: color-mix(in srgb, var(--c) 22%, transparent);
+  color: var(--c);
+  font-size: 1em;
+}
+.node-name {
+  font-weight: 700;
+  font-size: 1.02em;
+}
+.node-sub {
+  font-size: 0.78em;
+  color: var(--muted);
+}
+.node[data-state='active'] {
+  border-color: var(--c);
+  box-shadow: 0 0 0 1px var(--c), 0 0 1.6em color-mix(in srgb, var(--c) 45%, transparent);
+}
+.node[data-state='waiting'] {
+  opacity: 0.55;
+  border-style: dashed;
+  filter: saturate(0.5);
+}
+.node[data-state='done'] {
+  border-color: color-mix(in srgb, var(--pass) 70%, transparent);
+}
+.node[data-state='fail'] {
+  border-color: var(--fail);
+  box-shadow: 0 0 1.4em rgba(248, 113, 113, 0.45);
+}
+.node[data-state='alert'],
+.node[data-state='paused'] {
+  border-color: #fb923c;
+  box-shadow: 0 0 1.4em rgba(251, 146, 60, 0.45);
+}
+.node[data-state='restricted'] {
+  border-style: dashed;
+  border-color: #fbbf24;
+}
+.node[data-ghost='true'] {
+  --c: #4b5a78;
+  border-style: dashed;
+  background: transparent;
+  color: var(--faint);
+  cursor: default;
+}
+.node[data-selected='true'] {
+  outline: 2px solid var(--fg);
+  outline-offset: 3px;
+}
+.node-badge {
+  position: absolute;
+  top: -0.7em;
+  right: -0.7em;
+  display: grid;
+  place-items: center;
+  width: 1.55em;
+  height: 1.55em;
+  border-radius: 999px;
+  color: #0a1020;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.25em 0.6em;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  font-weight: 500;
+  white-space: nowrap;
+  border: 1px solid color-mix(in srgb, var(--chip, #a3b3d1) 55%, transparent);
+  background: color-mix(in srgb, var(--chip, #a3b3d1) 16%, #0d1528);
+  color: color-mix(in srgb, var(--chip, #a3b3d1) 55%, white);
+}
+
+/* Sticky note */
+.sticky {
+  --c: #fde047;
+  position: relative;
+  padding: 0.85rem 0.9rem 0.8rem;
+  border-radius: 4px 4px 14px 4px;
+  background: color-mix(in srgb, var(--c) 14%, var(--raised));
+  border-top: 4px solid var(--c);
+  box-shadow: 0 10px 22px -14px rgba(0, 0, 0, 0.8);
+}
+
+/* Dotted interference line animation */
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+.dash-anim {
+  animation: dash-flow 1.4s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--c, #fb923c) 60%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0.9em transparent;
+  }
+}
+.pulse {
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+
+/* Custom tooltip */
+.tip {
+  position: relative;
+}
+.tip-body {
+  pointer-events: none;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  opacity: 0;
+  z-index: 40;
+  width: max-content;
+  max-width: 240px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #e8eefb;
+  color: #0a1020;
+  font-size: 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.35;
+  white-space: normal;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.tip:hover > .tip-body,
+.tip:focus-within > .tip-body {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Scrollbars inside panels */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash-anim,
+  .pulse {
+    animation: none;
+  }
+  .node,
+  .tip-body {
+    transition: none;
+  }
+}

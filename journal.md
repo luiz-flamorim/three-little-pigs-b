@@ -1,0 +1,31 @@
+# Journal
+
+- 2026-10-16 11:20 | user | requested base project setup
+- 2026-10-16 11:20 | main | set project-folder-only boundary rule
+- 2026-10-16 11:20 | main | created .claude/agents and .claude/instructions
+- 2026-10-16 11:20 | main | created CLAUDE.md (main instructions)
+- 2026-10-16 11:20 | main | created README.md and .gitignore
+- 2026-10-16 11:20 | main | created tmp/ for temp files
+- 2026-10-16 11:20 | main | added agent journal-keeper
+- 2026-10-16 11:20 | main | created journal.md
+- 2026-10-16 11:20 | main | setup done; awaiting main project prompt
+- 2026-10-16 12:19 | user | supplied main brief: The Three Little Agents
+- 2026-10-16 12:19 | main | saved brief to .claude/instructions/project-brief.md
+- 2026-10-16 12:19 | main | scaffolded app/ (React, Vite, Tailwind, Framer, Lucide)
+- 2026-10-16 12:19 | main | npm cache kept in tmp/npm-cache (boundary rule)
+- 2026-10-16 12:19 | main | wrote story data: roles, content, flows, threats, scenes
+- 2026-10-16 12:19 | main | built FlowCanvas diagram engine + role nodes
+- 2026-10-16 12:19 | main | built 12 scenes, compare mode, summary board
+- 2026-10-16 12:19 | main | built controls, role panel, threat toggles, a11y
+- 2026-10-16 12:19 | main | added 18 tests (controls + accuracy rules): pass
+- 2026-10-16 12:19 | main | fixed: scene exit-wait transition could stall
+- 2026-10-16 12:19 | main | headless Chromium in tmp/ for visual QA
+- 2026-10-16 12:19 | main | fixed: node text size, failure drift overlap
+- 2026-10-16 12:19 | main | fixed: wolf label pile-up, phone wolf clipping
+- 2026-10-16 12:19 | main | wrote docs/ (architecture, storyboard, roles, etc.)
+- 2026-10-16 12:19 | main | updated README.md and CLAUDE.md for the app
+- 2026-10-16 12:19 | main | published artifact preview (claude.ai/artifact/2kbsa9LZ8Mpty4bwRDk2Ai)
+- 2026-10-16 12:26 | main | final QA: 12 scenes desk+phone, 0 errors, 0 overflow
+- 2026-10-16 12:41 | main | merged gitignores into root; removed app/.gitignore
+- 2026-10-16 12:41 | main | excluded .claude/, CLAUDE.md, journal.md from git
+- 2026-10-16 12:41 | main | README: dropped refs to unpublished files
